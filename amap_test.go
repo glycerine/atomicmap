@@ -6,9 +6,9 @@ import (
 	cv "github.com/smartystreets/goconvey/convey"
 )
 
-func TestAtomicMapGetSet(t *testing.T) {
-	cv.Convey("AtomicMap should Get and Set", t, func() {
-		am := NewAtomicMap()
+func TestAtomicMapIntStringGetSet(t *testing.T) {
+	cv.Convey("AtomicMapIntString should Get and Set", t, func() {
+		am := NewAtomicMapIntString()
 		am.Set(1, "one")
 		am.Set(2, "two")
 
