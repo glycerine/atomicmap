@@ -27,5 +27,7 @@ func TestAtomicMapIntStringGetSet(t *testing.T) {
 		cv.So(g3, cv.ShouldEqual, "")
 		cv.So(already, cv.ShouldEqual, false)
 
+		// Del should be available
+		am.Del(2)
 	})
 }

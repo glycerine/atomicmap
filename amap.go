@@ -34,6 +34,12 @@ func (m *AtomicMapIntString) Set(key int, val string) {
 	m.m[key] = val
 }
 
+func (m *AtomicMapIntString) Del(key int) {
+	m.tex.Lock()
+	defer m.tex.Unlock()
+	delete(m.m, key)
+}
+
 // int64 -> string
 
 type AtomicMapInt64String struct {
@@ -64,6 +70,12 @@ func (m *AtomicMapInt64String) Set(key int64, val string) {
 	m.tex.Lock()
 	defer m.tex.Unlock()
 	m.m[key] = val
+}
+
+func (m *AtomicMapInt64String) Del(key int64) {
+	m.tex.Lock()
+	defer m.tex.Unlock()
+	delete(m.m, key)
 }
 
 // int64 -> interface{}
@@ -98,6 +110,12 @@ func (m *AtomicMapInt64Iface) Set(key int64, val interface{}) {
 	m.m[key] = val
 }
 
+func (m *AtomicMapInt64Iface) Del(key int64) {
+	m.tex.Lock()
+	defer m.tex.Unlock()
+	delete(m.m, key)
+}
+
 // int -> interface{}
 
 type AtomicMapIntIface struct {
@@ -128,4 +146,10 @@ func (m *AtomicMapIntIface) Set(key int, val interface{}) {
 	m.tex.Lock()
 	defer m.tex.Unlock()
 	m.m[key] = val
+}
+
+func (m *AtomicMapIntIface) Del(key int) {
+	m.tex.Lock()
+	defer m.tex.Unlock()
+	delete(m.m, key)
 }
