@@ -13,7 +13,13 @@ func NewAtomicMap() *AtomicMap {
 	}
 }
 
-func (m *AtomicMap) Get(key int64) (string, bool) {
+func (m *AtomicMap) Get(key int64) string {
+	m.tex.RLock()
+	defer m.tex.RUnlock()
+	return m.m[key]
+}
+
+func (m *AtomicMap) Get2(key int64) (string, bool) {
 	m.tex.RLock()
 	defer m.tex.RUnlock()
 	v, ok := m.m[key]
